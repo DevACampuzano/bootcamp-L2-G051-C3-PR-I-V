@@ -77,3 +77,10 @@ npm create vite@latest
 ### pasos en la terminal
 
 ``` git init ```
+
+
+* ``` git add . ```
+
+* ``` git commit -m "mensaje del commit" ```
+
+* ``` git push ```
