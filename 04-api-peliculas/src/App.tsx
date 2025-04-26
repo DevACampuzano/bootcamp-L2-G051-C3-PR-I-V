@@ -1,9 +1,16 @@
-import { Typography, Stack, TextField, SxProps, Theme } from "@mui/material";
+import {
+  Typography,
+  Stack,
+  TextField,
+  SxProps,
+  Theme,
+  Button,
+} from "@mui/material";
 /**
  * Typography
  *  p H1 H2 H3 H4 H5 H6
  */
-const stylesInput:SxProps<Theme> ={
+const stylesInput: SxProps<Theme> = {
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
       borderColor: "#fff",
@@ -18,19 +25,36 @@ const stylesInput:SxProps<Theme> ={
   "& .MuiInputLabel-root": {
     color: "#fff",
   },
-  "& .MuiInputBase-input":{
+  "& .MuiInputLabel-root.Mui-focused": {
     color: "#fff",
-  }
-}
-const App= () => {
+  },
+  "& .MuiInputBase-input": {
+    color: "#fff",
+  },
+};
+
+const App = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    alert("Hola mundo");
+  };
+
   return (
     <Stack
       justifyContent="center"
       alignItems="center"
       minHeight="100vh"
       bgcolor="#242e34"
+      component="main"
     >
-      <Stack bgcolor="#0d253f" gap={2} p={5} borderRadius="16px">
+      <Stack
+        bgcolor="#0d253f"
+        gap={2}
+        p={5}
+        borderRadius="16px"
+        component="form"
+        onSubmit={handleSubmit}
+      >
         <Typography
           component="h3"
           variant="h1"
@@ -40,11 +64,24 @@ const App= () => {
         >
           Login
         </Typography>
-        <TextField label="Email" variant="outlined" sx={stylesInput} type="email"/>
-        <TextField label="Passowrd" variant="outlined" sx={stylesInput} type="password"/>
+        <TextField
+          label="Email"
+          variant="outlined"
+          sx={stylesInput}
+          type="email"
+        />
+        <TextField
+          label="Passowrd"
+          variant="outlined"
+          sx={stylesInput}
+          type="password"
+        />
+        <Button variant="contained" type="submit">
+          Sing In
+        </Button>
       </Stack>
     </Stack>
   );
-}
+};
 
 export default App;

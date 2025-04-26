@@ -1,4 +1,4 @@
-# API Peliculas <img src="./public/icon.png" alt="Logo" width="20" height="20">
+# API Peliculas <img src="https://raw.githubusercontent.com/DevACampuzano/bootcamp-L2-G051-C3-PR-I-V/main/04-api-peliculas/public/icon.png" alt="Logo" width="20" height="20">
 
 ## Requisitos - instalaciones
 * Node < 18+
