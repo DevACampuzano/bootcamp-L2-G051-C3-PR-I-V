@@ -6,7 +6,9 @@ import {
   Theme,
   Button,
   Box,
+  Link,
 } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import { useState } from "react";
 /**
@@ -44,7 +46,7 @@ export const Login = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // const formData = new FormData(e.currentTarget);
-    alert("test")
+    alert("test");
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,43 +59,38 @@ export const Login = () => {
 
   return (
     <Stack
-      justifyContent="center"
-      alignItems="center"
-      minHeight="100vh"
-      bgcolor="#242e34"
-      component="main"
+      bgcolor="#0d253f"
+      gap={2}
+      p={5}
+      borderRadius="16px"
+      component="form"
+      onSubmit={handleSubmit}
     >
-      <Stack
-        bgcolor="#0d253f"
-        gap={2}
-        p={5}
-        borderRadius="16px"
-        component="form"
-        onSubmit={handleSubmit}
-      >
-        <Box component="img" src={logo} alt="Logo" />
-        <TextField
-          label="Email"
-          variant="outlined"
-          sx={stylesInput}
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        <TextField
-          label="Password"
-          variant="outlined"
-          sx={stylesInput}
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-        <Button variant="contained" type="submit">
-          Sing In
-        </Button>
-      </Stack>
+      <Box component="img" src={logo} alt="Logo" />
+      <TextField
+        label="Email"
+        variant="outlined"
+        sx={stylesInput}
+        type="email"
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+      />
+      <TextField
+        label="Password"
+        variant="outlined"
+        sx={stylesInput}
+        type="password"
+        name="password"
+        value={formData.password}
+        onChange={handleChange}
+      />
+      <Link component={RouterLink} to="/register">
+        Registro
+      </Link>
+      <Button variant="contained" type="submit">
+        Sing In
+      </Button>
     </Stack>
   );
 };
