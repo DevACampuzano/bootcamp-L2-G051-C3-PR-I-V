@@ -1,8 +1,8 @@
-import { Login } from "./pages";
+import { Register } from "./pages";
 const App = () => {
   return (
     <>
-      <Login />
+      <Register />
     </>
   );
 };
