@@ -8,9 +8,9 @@ import {
   Box,
   Link,
 } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 /**
  * Typography
  *  p H1 H2 H3 H4 H5 H6
@@ -43,10 +43,12 @@ export const Login = () => {
     email: "andres@test.co",
     password: "",
   });
+  const navigate = useNavigate();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // const formData = new FormData(e.currentTarget);
-    alert("test");
+    navigate("/dashboard");
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,6 +58,13 @@ export const Login = () => {
       [name]: value,
     });
   };
+
+  useEffect(() => {
+    const userJson = localStorage.getItem("user");
+    if (userJson !== null) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   return (
     <Stack
@@ -85,7 +94,7 @@ export const Login = () => {
         value={formData.password}
         onChange={handleChange}
       />
-      <Link component={RouterLink} to="/register">
+      <Link component={RouterLink} to="/register" color="#fff">
         Registro
       </Link>
       <Button variant="contained" type="submit">

@@ -8,9 +8,9 @@ import {
   Box,
   Link,
 } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 /**
  * Typography
  *  p H1 H2 H3 H4 H5 H6
@@ -48,6 +48,7 @@ export const Register = () => {
     confirmPassword: "",
   });
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -73,6 +74,13 @@ export const Register = () => {
     }
     setFormData(newData);
   };
+
+  useEffect(() => {
+    const userJson = localStorage.getItem("user");
+    if (userJson !== null) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   return (
     <Stack
