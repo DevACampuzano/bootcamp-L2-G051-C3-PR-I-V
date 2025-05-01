@@ -1,5 +1,5 @@
 import axios from "axios";
-//npm run dev
+//npm install axios
 const movieDb = axios.create({
   baseURL: "https://api.themoviedb.org/3",
   params: {

@@ -1,5 +1,5 @@
 import { Route, Routes, Navigate } from "react-router-dom";
-import { Register, Login, NotFound, Dashboard } from "./pages";
+import { Register, Login, NotFound, Dashboard, MoviesDetails } from "./pages";
 import { Layout } from "./components/Layout";
 import { FC, PropsWithChildren } from "react";
 
@@ -15,6 +15,14 @@ const App = () => {
           element={
             <ProtecterRouter>
               <Dashboard />
+            </ProtecterRouter>
+          }
+        />
+        <Route
+          path="/movies-detail/:id"
+          element={
+            <ProtecterRouter>
+              <MoviesDetails />
             </ProtecterRouter>
           }
         />
