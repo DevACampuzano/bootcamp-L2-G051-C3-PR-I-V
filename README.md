@@ -11,12 +11,13 @@ Este repositorio se creo para facilitar los codigo trabajados durante las clases
 - [Mysql](https://dev.mysql.com/)
 - [Typescript](https://www.typescriptlang.org/)
 
-## Instalaciones requeridas
+## Instalaciones requeridas y herramientas
 
 - [Visual studio code](https://code.visualstudio.com/download)
 - [Node v18+](https://nodejs.org/es) | [Bun v1.2.10+](https://bun.sh/)
 - [Python v3.13.2](https://www.python.org/downloads/)
 - [Git](https://git-scm.com/)
+- [Postman](https://www.postman.com/downloads/)
 
 ### MySQL
 
