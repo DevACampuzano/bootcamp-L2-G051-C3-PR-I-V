@@ -49,7 +49,7 @@ crearemos una carpeta donde contendermo toda le extrucutra del proyecto.
     └── routers
 ```
 
-7. en el achivo [Server.js]("https://github.com/DevACampuzano/bootcamp-L2-G051-C3-PR-I-V/blob/main/08-server/src/models/Server.js") importamos las librerias.
+7. en el achivo `Server.js` importamos las librerias.
 
 ```js
 const express = require("express");
@@ -114,7 +114,7 @@ constructor() {
 module.exports = Server;
 ```
 
-14. Nos dirigimos al archivo [`index.js`]("https://github.com/DevACampuzano/bootcamp-L2-G051-C3-PR-I-V/blob/main/08-server/index.js") e importamos la clase `Server`.
+14. Nos dirigimos al archivo `index.js` e importamos la clase `Server`.
 
 ```js
 const Server = require("./src/models/Server");
