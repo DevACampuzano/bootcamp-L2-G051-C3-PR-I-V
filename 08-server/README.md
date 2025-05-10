@@ -114,7 +114,7 @@ constructor() {
 module.exports = Server;
 ```
 
-14. Nos dirigimos al archivo `index.js` y importamos la clase `Server`.
+14. Nos dirigimos al archivo `index.js` e importamos la clase `Server`.
 
 ```js
 const Server = require("./src/models/Server");
