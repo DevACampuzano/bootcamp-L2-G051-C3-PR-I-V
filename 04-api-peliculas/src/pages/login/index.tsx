@@ -11,6 +11,7 @@ import {
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import { useState, useEffect } from "react";
+import axios from "axios";
 /**
  * Typography
  *  p H1 H2 H3 H4 H5 H6
@@ -45,10 +46,17 @@ export const Login = () => {
   });
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // const formData = new FormData(e.currentTarget);
-    navigate("/dashboard");
+    //navigate("/dashboard");
+
+    try {
+      const res = await axios.post("http://localhost:3000/");
+      console.log(res.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
