@@ -49,7 +49,7 @@ crearemos una carpeta donde contendermo toda le extrucutra del proyecto.
     └── routers
 ```
 
-7. en el achivo `Server.js` importamos las librerias.
+7. en el achivo [`Server.js`]("./src/models/Server.js") importamos las librerias.
 
 ```js
 const express = require("express");
