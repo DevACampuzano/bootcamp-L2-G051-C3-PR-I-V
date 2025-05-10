@@ -49,7 +49,7 @@ crearemos una carpeta donde contendermo toda le extrucutra del proyecto.
     └── routers
 ```
 
-7. en el achivo [`Server.js`]("https://github.com/DevACampuzano/bootcamp-L2-G051-C3-PR-I-V/blob/main/08-server/src/models/Server.js") importamos las librerias.
+7. en el achivo [Server.js]("https://github.com/DevACampuzano/bootcamp-L2-G051-C3-PR-I-V/blob/main/08-server/src/models/Server.js") importamos las librerias.
 
 ```js
 const express = require("express");
