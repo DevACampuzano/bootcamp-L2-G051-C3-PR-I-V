@@ -2,6 +2,8 @@
 //import express from "express";
 const express = require("express");
 const cors = require("cors");
+const userApi = require("../routers/user");
+const { sequelize } = require("./index");
 
 class Server {
   constructor() {
@@ -17,20 +19,36 @@ class Server {
     this.app.use(express.json());
   }
 
+  async dbConnection() {
+    try {
+      await sequelize.authenticate();
+      console.log("Connection has been established successfully.");
+    } catch (error) {
+      throw error;
+    }
+  }
+
   routes() {
-    this.app.get("/", (req, res) => {
-      res.send("<h1>Hola Mundo</h1>");
-    });
+    // this.app.get("/", (req, res) => {
+    //   res.send("<h1>Hola Mundo</h1>");
+    // });
+    userApi(this.app);
     this.app.use((req, res) => {
       res.send("<h1>404 Not Found</h1>");
     });
   }
 
-  listen() {
-    this.routes();
-    this.app.listen(this.port, () => {
-      console.log("Servidor corriendo en http://localhost:" + this.port);
-    });
+  async listen() {
+    try {
+      await this.dbConnection();
+      this.routes();
+      this.app.listen(this.port, () => {
+        console.log("Servidor corriendo en http://localhost:" + this.port);
+      });
+    } catch (error) {
+      console.log("Error al iniciar el servidor");
+      console.log(error);
+    }
   }
 }
 
