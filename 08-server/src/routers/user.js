@@ -1,5 +1,6 @@
 const express = require("express");
 const userController = require("../controllers/user");
+const verifyJWT = require("../middlewares/verify-jwt");
 
 // http://localhost:3000
 // http://localhost:3000/api/user/get-user
@@ -40,7 +41,7 @@ const userApi = (app) => {
         });
       }
 
-      const rol = "user";
+      const rol = "owner";
       const newUser = await userController.createUser({
         nombre,
         apellido,
@@ -62,9 +63,60 @@ const userApi = (app) => {
     }
   });
 
-  router.post("/login", (req, res) => {});
+  router.post("/login", async (req, res) => {
+    try {
+      const { documento, password } = req.body;
 
-  router.put("/update-user", (req, res) => {});
+      if (!documento || documento.length === 0) {
+        return res.status(400).json({
+          success: false,
+          msg: "El documento es requerido",
+        });
+      }
+      if (!password || password.length === 0) {
+        return res.status(400).json({
+          success: false,
+          msg: "El password es requerido",
+        });
+      }
+
+      const session = await userController.login(documento, password);
+      if (!session.success) {
+        return res.status(401).json(session);
+      }
+
+      res.status(200).json(session);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        success: false,
+        msg: "Ocurrio un error en el servidor, no se pudo iniciar.",
+      });
+    }
+  });
+
+  router.put("/update-user", [verifyJWT], async (req, res) => {
+    try {
+      const { payload, nombre, apellido, password } = req.body;
+
+      const result = await userController.updateUser(
+        {
+          nombre,
+          apellido,
+          password,
+        },
+        payload.id
+      );
+
+      res.status(200).json(result);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        success: false,
+        msg: "Ocurrio un error en el servidor, no se pudo actualizar la información.",
+      });
+    }
+  });
 };
 
 module.exports = userApi;
