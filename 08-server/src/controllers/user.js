@@ -40,9 +40,13 @@ const login = async (documento, password) => {
         msg: "Contraseña incorrecta",
       };
     }
-    const token = jwt.sign({ id: user.id }, process.env.JWT_KEY, {
-      expiresIn: "30d",
-    });
+    const token = jwt.sign(
+      { id: user.id, rol: user.rol },
+      process.env.JWT_KEY,
+      {
+        expiresIn: "30d",
+      }
+    );
 
     const userJSON = user.toJSON();
 
@@ -83,8 +87,35 @@ const updateUser = async (data, id) => {
   }
 };
 
+const getUser = async (id) => {
+  try {
+    const user = await db.userModel.findOne({
+      where: {
+        id,
+        estado: 1,
+      },
+      include: [
+        {
+          model: db.petModel,
+          as: "pets",
+          include: [
+            {
+              model: db.quoteModel,
+              as: "quote",
+            },
+          ],
+        },
+      ],
+    });
+    return user;
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   createUser,
   login,
   updateUser,
+  getUser,
 };

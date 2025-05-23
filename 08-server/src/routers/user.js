@@ -8,9 +8,11 @@ const userApi = (app) => {
   const router = express.Router();
   app.use("/api/user", router);
 
-  //   router.get("/get-user", (req, res) => {
-  //     res.send("get user all");
-  //   });
+  router.get("/get-user", [verifyJWT], async (req, res) => {
+    const payload = req.payload;
+    const user = await userController.getUser(payload.id);
+    res.json(user);
+  });
 
   router.post("/create-user", async (req, res) => {
     const body = req.body;
@@ -97,8 +99,8 @@ const userApi = (app) => {
 
   router.put("/update-user", [verifyJWT], async (req, res) => {
     try {
-      const { payload, nombre, apellido, password } = req.body;
-
+      const { nombre, apellido, password } = req.body;
+      const payload = req.payload;
       const result = await userController.updateUser(
         {
           nombre,

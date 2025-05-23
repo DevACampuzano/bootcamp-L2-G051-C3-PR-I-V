@@ -54,5 +54,16 @@ module.exports = (sequelize = new Sequelize()) => {
     }
   );
 
+  User.associate = (models) => {
+    User.hasMany(models.petModel, {
+      foreignKey: "id_usuario",
+      as: "pets",
+    });
+    User.hasMany(models.quoteModel, {
+      foreignKey: "id_veterinario",
+      as: "quote",
+    });
+  };
+
   return User;
 };

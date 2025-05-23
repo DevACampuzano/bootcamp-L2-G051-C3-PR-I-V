@@ -26,9 +26,8 @@ const verifyJWT = async (req = request, res = response, next) => {
     if (!validate.success) {
       res.status(401).json(validate);
     }
-    console.log({ validate });
 
-    req.body.payload = validate.payload;
+    req.payload = validate.payload;
     next();
   } catch (error) {
     console.log(error);
