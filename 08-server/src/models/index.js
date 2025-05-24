@@ -20,8 +20,8 @@ db.quoteModel = functionModelQuote(sequelize);
 
 // Ejecución manual
 // db.petModel.associate(db);
-// db.petModel.associate(db);
 
+//["userModel","petModel","quoteModel"]
 //Ejecución automatica
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate !== undefined) {
